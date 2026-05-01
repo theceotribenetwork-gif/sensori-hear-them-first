@@ -297,7 +297,9 @@
   transition: transform 0.18s ease-out, width 0.2s, height 0.2s;
 }
 
-@media (max-width: 768px) {
+/* Hide custom cursor only on devices without any pointer at all.
+   We keep it visible on touch devices so the gold trail follows finger taps. */
+@media (hover: none) and (pointer: none) {
   .cursor-dot, .cursor-ring { display: none; }
 }
 
