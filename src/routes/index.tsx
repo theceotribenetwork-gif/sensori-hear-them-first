@@ -59,7 +59,7 @@ function SensoriLanding() {
     setShowIntro(false);
   };
 
-  useReveal();
+  useReveal(showIntro);
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[var(--ink-deep)] text-[var(--cream)] grain">
