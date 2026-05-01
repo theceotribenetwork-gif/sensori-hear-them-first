@@ -19,9 +19,10 @@ export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 overflow-hidden bg-[var(--ink-deep)] grain transition-opacity duration-700 ${
+      className={`fixed inset-0 z-50 h-screen w-screen overflow-y-auto overflow-x-hidden bg-[var(--ink-deep)] grain transition-opacity duration-700 ${
         leaving ? "opacity-0" : "opacity-100"
       }`}
+      style={{ height: "100dvh" }}
     >
       {/* Floating orbs */}
       <div
