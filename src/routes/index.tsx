@@ -4,6 +4,7 @@ import { IntroOverlay } from "@/components/sensori/IntroOverlay";
 import { CursorTrail } from "@/components/sensori/CursorTrail";
 import { ParticleField } from "@/components/sensori/ParticleField";
 import { CountUp } from "@/components/sensori/CountUp";
+import { PhonePreview } from "@/components/sensori/PhonePreview";
 import { TiltCard } from "@/components/sensori/TiltCard";
 import { useReveal } from "@/components/sensori/useReveal";
 
@@ -73,6 +74,7 @@ function SensoriLanding() {
           <Ticker />
           <Stats />
           <HowItWorks />
+          <Preview />
           <Features />
           <Comparison />
           <Editorial />
@@ -238,6 +240,56 @@ function HowItWorks() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Preview() {
+  return (
+    <section className="relative overflow-hidden px-6 py-32">
+      <div
+        className="pointer-events-none absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full animate-float-orb"
+        style={{ background: "var(--gradient-emerald)" }}
+      />
+      <div
+        className="pointer-events-none absolute -right-32 bottom-1/4 h-[360px] w-[360px] rounded-full animate-float-orb"
+        style={{ background: "var(--gradient-gold)", animationDelay: "-5s" }}
+      />
+
+      <div className="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-2">
+        <div className="reveal order-2 lg:order-1">
+          <p className="mb-5 text-xs uppercase tracking-[0.5em] text-[var(--gold-bright)]/80">
+            A look inside
+          </p>
+          <h2 className="font-serif text-5xl font-light leading-[1.05] sm:text-6xl">
+            Quiet, deliberate, <em className="italic text-gradient-gold">unmistakably yours.</em>
+          </h2>
+          <p className="mt-6 max-w-md text-[var(--cream-muted)]">
+            No swipe deck. No grid of faces. Sensori is built around three moments —
+            meeting a voice, talking in private, and the reveal you both decide on.
+          </p>
+
+          <ul className="mt-10 space-y-5">
+            {[
+              ["Compatibility", "Matched on values and the things you actually care about — surfaced before any face."],
+              ["In-app voice", "Calls and chat that never leave Sensori. No phone numbers. No socials."],
+              ["The Reveal", "Photos unlock only when both of you say yes. Earned, not entitled."],
+            ].map(([h, b]) => (
+              <li key={h} className="flex gap-4">
+                <span className="mt-1 font-serif text-[var(--gold-bright)]">✦</span>
+                <div>
+                  <p className="font-serif text-lg text-[var(--cream)]">{h}</p>
+                  <p className="text-sm text-[var(--cream-muted)]">{b}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="reveal order-1 lg:order-2">
+          <PhonePreview />
         </div>
       </div>
     </section>
