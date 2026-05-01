@@ -74,6 +74,7 @@ function SensoriLanding() {
           <Ticker />
           <Stats />
           <HowItWorks />
+          <Preview />
           <Features />
           <Comparison />
           <Editorial />
