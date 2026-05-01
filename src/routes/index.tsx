@@ -295,6 +295,8 @@ function Preview() {
     </section>
   );
 }
+
+function Features() {
   return (
     <section id="features" className="relative px-6 py-32">
       <div className="mx-auto max-w-6xl">
