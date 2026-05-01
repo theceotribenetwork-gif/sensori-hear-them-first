@@ -1,0 +1,111 @@
+import { useEffect, useState } from "react";
+import { ParticleField } from "./ParticleField";
+
+const DRIFT_WORDS = [
+  "first laugh", "staying up", "really seen", "heard",
+  "known", "felt", "honest", "safe", "becoming",
+  "the way you said it", "presence", "unfiltered",
+];
+
+export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
+  const [leaving, setLeaving] = useState(false);
+
+  useEffect(() => {
+    if (leaving) {
+      const t = setTimeout(onEnter, 900);
+      return () => clearTimeout(t);
+    }
+  }, [leaving, onEnter]);
+
+  return (
+    <div
+      className={`fixed inset-0 z-50 overflow-hidden bg-[var(--ink-deep)] grain transition-opacity duration-700 ${
+        leaving ? "opacity-0" : "opacity-100"
+      }`}
+    >
+      {/* Floating orbs */}
+      <div
+        className="pointer-events-none absolute -left-40 top-1/4 h-[480px] w-[480px] rounded-full animate-float-orb"
+        style={{ background: "var(--gradient-emerald)" }}
+      />
+      <div
+        className="pointer-events-none absolute -right-32 bottom-1/4 h-[420px] w-[420px] rounded-full animate-float-orb"
+        style={{ background: "var(--gradient-gold)", animationDelay: "-7s" }}
+      />
+
+      <ParticleField density={50} />
+
+      {/* Drifting words */}
+      <div className="pointer-events-none absolute inset-0">
+        {DRIFT_WORDS.map((w, i) => {
+          const top = (i * 73) % 90 + 5;
+          const left = (i * 47) % 80 + 5;
+          const dx = (Math.sin(i) * 200).toFixed(0);
+          const dy = (Math.cos(i * 1.3) * 120).toFixed(0);
+          const dur = 18 + (i % 5) * 4;
+          const delay = (i * 1.7) % 10;
+          return (
+            <span
+              key={w}
+              className="absolute font-serif italic text-[var(--cream)]/40 whitespace-nowrap"
+              style={{
+                top: `${top}%`,
+                left: `${left}%`,
+                fontSize: `${0.9 + (i % 4) * 0.25}rem`,
+                animation: `drift ${dur}s ease-in-out ${delay}s infinite`,
+                ["--drift-x" as string]: `${dx}px`,
+                ["--drift-y" as string]: `${dy}px`,
+                ["--drift-opacity" as string]: "0.45",
+              }}
+            >
+              {w}
+            </span>
+          );
+        })}
+      </div>
+
+      {/* Logo */}
+      <div className="absolute left-8 top-8 font-serif text-2xl tracking-wide text-[var(--cream)] animate-fade-in">
+        Sensori
+      </div>
+
+      {/* Center content */}
+      <div className="relative flex h-full flex-col items-center justify-center px-6 text-center">
+        <p
+          className="mb-6 text-xs uppercase tracking-[0.4em] text-[var(--gold-bright)]/80 animate-fade-up"
+          style={{ animationDelay: "0.2s" }}
+        >
+          A new kind of connection
+        </p>
+        <h1
+          className="font-serif text-5xl font-light leading-[1.05] text-[var(--cream)] sm:text-7xl md:text-8xl animate-fade-up"
+          style={{ animationDelay: "0.5s" }}
+        >
+          Is love really <em className="italic text-gradient-gold">blind?</em>
+        </h1>
+        <p
+          className="mt-8 max-w-md text-sm text-[var(--cream-muted)] sm:text-base animate-fade-up"
+          style={{ animationDelay: "0.9s" }}
+        >
+          No photos. No filters. No snap judgments. Just voices, values, and what's actually real.
+        </p>
+        <button
+          onClick={() => setLeaving(true)}
+          className="group mt-12 inline-flex items-center gap-3 border-gold-soft rounded-full px-9 py-4 text-sm uppercase tracking-[0.3em] text-[var(--gold-pale)] transition-all duration-500 hover:bg-[var(--gold)]/10 hover:tracking-[0.4em] hover:shadow-[var(--shadow-gold)] animate-fade-up"
+          style={{ animationDelay: "1.3s" }}
+        >
+          Let's find out
+          <span className="transition-transform duration-500 group-hover:translate-x-2">→</span>
+        </button>
+      </div>
+
+      {/* bottom hint */}
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.4em] text-[var(--cream-muted)]/60 animate-fade-in"
+        style={{ animationDelay: "2s" }}
+      >
+        meet from the inside out
+      </div>
+    </div>
+  );
+}
