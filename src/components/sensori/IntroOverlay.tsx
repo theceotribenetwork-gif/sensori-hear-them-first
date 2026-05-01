@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import { ParticleField } from "./ParticleField";
 
-const DRIFT_WORDS = [
-  "first laugh", "staying up", "really seen", "heard",
-  "known", "felt", "honest", "safe", "becoming",
-  "the way you said it", "presence", "unfiltered",
-];
-
 export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
   const [leaving, setLeaving] = useState(false);
 
@@ -24,45 +18,22 @@ export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
       }`}
       style={{ height: "100dvh" }}
     >
-      {/* Floating orbs */}
+      {/* Floating orbs — softer, more spacious */}
       <div
-        className="pointer-events-none absolute -left-40 top-1/4 h-[480px] w-[480px] rounded-full animate-float-orb"
+        className="pointer-events-none absolute -left-40 top-1/4 h-[480px] w-[480px] rounded-full opacity-70 animate-float-orb"
         style={{ background: "var(--gradient-emerald)" }}
       />
       <div
-        className="pointer-events-none absolute -right-32 bottom-1/4 h-[420px] w-[420px] rounded-full animate-float-orb"
+        className="pointer-events-none absolute -right-32 bottom-1/4 h-[420px] w-[420px] rounded-full opacity-70 animate-float-orb"
         style={{ background: "var(--gradient-gold)", animationDelay: "-7s" }}
       />
 
-      <ParticleField density={50} />
-
-      {/* Drifting words */}
-      <div className="pointer-events-none absolute inset-0">
-        {DRIFT_WORDS.map((w, i) => {
-          const top = (i * 73) % 90 + 5;
-          const left = (i * 47) % 80 + 5;
-          const dx = (Math.sin(i) * 200).toFixed(0);
-          const dy = (Math.cos(i * 1.3) * 120).toFixed(0);
-          const dur = 18 + (i % 5) * 4;
-          const delay = (i * 1.7) % 10;
-          return (
-            <span
-              key={w}
-              className="absolute font-serif italic text-[var(--cream)]/40 whitespace-nowrap"
-              style={{
-                top: `${top}%`,
-                left: `${left}%`,
-                fontSize: `${0.9 + (i % 4) * 0.25}rem`,
-                animation: `drift ${dur}s ease-in-out ${delay}s infinite`,
-                ["--drift-x" as string]: `${dx}px`,
-                ["--drift-y" as string]: `${dy}px`,
-                ["--drift-opacity" as string]: "0.45",
-              }}
-            >
-              {w}
-            </span>
-          );
-        })}
+      {/* Subtle particle field — denser on desktop, minimal on mobile */}
+      <div className="pointer-events-none absolute inset-0 hidden sm:block">
+        <ParticleField density={36} />
+      </div>
+      <div className="pointer-events-none absolute inset-0 sm:hidden opacity-60">
+        <ParticleField density={14} />
       </div>
 
       {/* Logo */}
@@ -72,6 +43,11 @@ export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
 
       {/* Center content */}
       <div className="relative flex min-h-full flex-col items-center justify-center px-6 py-24 text-center">
+        {/* Hairline divider above eyebrow */}
+        <div
+          className="mb-8 h-px w-16 bg-[var(--gold)]/40 animate-fade-in"
+          style={{ animationDelay: "0.1s" }}
+        />
         <p
           className="mb-6 text-xs uppercase tracking-[0.4em] text-[var(--gold-bright)]/80 animate-fade-up"
           style={{ animationDelay: "0.2s" }}

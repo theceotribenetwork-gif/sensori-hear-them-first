@@ -5,15 +5,21 @@ export function CursorTrail() {
   const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let dotX = 0, dotY = 0, ringX = 0, ringY = 0, mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0, mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
     let raf = 0;
 
-    const onMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+    const setPos = (x: number, y: number) => {
+      mouseX = x;
+      mouseY = y;
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        dotRef.current.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
       }
+    };
+
+    const onMove = (e: MouseEvent) => setPos(e.clientX, e.clientY);
+    const onTouch = (e: TouchEvent) => {
+      const t = e.touches[0] ?? e.changedTouches[0];
+      if (t) setPos(t.clientX, t.clientY);
     };
 
     const loop = () => {
@@ -26,9 +32,13 @@ export function CursorTrail() {
     };
 
     window.addEventListener("mousemove", onMove);
+    window.addEventListener("touchstart", onTouch, { passive: true });
+    window.addEventListener("touchmove", onTouch, { passive: true });
     raf = requestAnimationFrame(loop);
     return () => {
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchstart", onTouch);
+      window.removeEventListener("touchmove", onTouch);
       cancelAnimationFrame(raf);
     };
   }, []);
