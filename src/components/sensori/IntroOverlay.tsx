@@ -71,7 +71,7 @@ export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* Center content */}
-      <div className="relative flex h-full flex-col items-center justify-center px-6 text-center">
+      <div className="relative flex min-h-full flex-col items-center justify-center px-6 py-24 text-center">
         <p
           className="mb-6 text-xs uppercase tracking-[0.4em] text-[var(--gold-bright)]/80 animate-fade-up"
           style={{ animationDelay: "0.2s" }}
