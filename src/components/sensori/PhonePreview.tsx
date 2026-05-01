@@ -73,6 +73,7 @@ export function PhonePreview() {
           </div>
         </div>
       </div>
+      </div>
 
       {/* Screen pager dots */}
       <div className="mt-10 flex items-center justify-center gap-3">
