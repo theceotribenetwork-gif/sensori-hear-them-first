@@ -14,27 +14,29 @@ export function PhonePreview() {
   }, []);
 
   return (
-    <div className="relative mx-auto" style={{ perspective: "1800px" }}>
+    <div className="relative mx-auto w-full" style={{ perspective: "1800px" }}>
       {/* Soft glow behind phone */}
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] max-h-[520px] max-w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
         style={{ background: "var(--gradient-emerald)" }}
       />
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[65%] w-[65%] max-h-[420px] max-w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
         style={{ background: "var(--gradient-gold)" }}
       />
 
-      {/* Phone frame */}
-      <div
-        className="relative mx-auto animate-float-phone"
-        style={{
-          width: 300,
-          height: 620,
-          transform: "rotateY(-12deg) rotateX(6deg) rotateZ(-2deg)",
-          transformStyle: "preserve-3d",
-        }}
-      >
+      {/* Responsive scale wrapper — keeps the 300x620 design intact while scaling down */}
+      <div className="phone-scale relative mx-auto" style={{ width: 300, height: 620 }}>
+        {/* Phone frame */}
+        <div
+          className="relative animate-float-phone"
+          style={{
+            width: 300,
+            height: 620,
+            transform: "rotateY(-12deg) rotateX(6deg) rotateZ(-2deg)",
+            transformStyle: "preserve-3d",
+          }}
+        >
         {/* Outer gold bezel */}
         <div
           className="absolute inset-0 rounded-[48px] p-[3px]"
