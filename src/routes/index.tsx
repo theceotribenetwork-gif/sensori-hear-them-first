@@ -1,4 +1,5 @@
 import { useEffect, useState, FormEvent } from "react";
+import { createFileRoute } from "@tanstack/react-router";
 import { IntroOverlay } from "@/components/sensori/IntroOverlay";
 import { CursorTrail } from "@/components/sensori/CursorTrail";
 import { ParticleField } from "@/components/sensori/ParticleField";
@@ -39,7 +40,7 @@ const COMPARE = [
   ["Friendship & undefined modes", true, false, false],
 ];
 
-export const Route = (await import("@tanstack/react-router")).createFileRoute("/")({
+export const Route = createFileRoute("/")({
   component: SensoriLanding,
 });
 
