@@ -230,6 +230,11 @@
   opacity: 1;
   transform: translateY(0);
 }
+/* Fallback: if JS/IntersectionObserver never runs, content still appears */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+}
+.no-js .reveal { opacity: 1; transform: none; }
 
 /* Custom gold cursor */
 .cursor-dot, .cursor-ring {
