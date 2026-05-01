@@ -4,6 +4,7 @@ import { IntroOverlay } from "@/components/sensori/IntroOverlay";
 import { CursorTrail } from "@/components/sensori/CursorTrail";
 import { ParticleField } from "@/components/sensori/ParticleField";
 import { CountUp } from "@/components/sensori/CountUp";
+import { PhonePreview } from "@/components/sensori/PhonePreview";
 import { TiltCard } from "@/components/sensori/TiltCard";
 import { useReveal } from "@/components/sensori/useReveal";
 
