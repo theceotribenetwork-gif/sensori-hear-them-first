@@ -237,6 +237,23 @@
 
 .animate-float-orb { animation: float-orb 14s ease-in-out infinite; }
 .animate-fade-up { animation: fade-up 0.9s ease-out both; }
+
+/* Phone preview responsive scaling.
+   The phone is designed at 300x620; we scale the wrapper down on small
+   screens and shrink the reserved height to match so layout doesn't
+   leave huge gaps. */
+.phone-scale {
+  transform-origin: top center;
+}
+@media (max-width: 380px) {
+  .phone-scale { transform: scale(0.7); height: 434px !important; }
+}
+@media (min-width: 381px) and (max-width: 480px) {
+  .phone-scale { transform: scale(0.8); height: 496px !important; }
+}
+@media (min-width: 481px) and (max-width: 640px) {
+  .phone-scale { transform: scale(0.9); height: 558px !important; }
+}
 .animate-fade-in { animation: fade-in 1.2s ease-out both; }
 .animate-pulse-glow { animation: pulse-glow 6s ease-in-out infinite; }
 .animate-ticker { animation: ticker-scroll 40s linear infinite; }
