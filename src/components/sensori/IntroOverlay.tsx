@@ -41,7 +41,7 @@ export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
       <img
         src={wordmark}
         alt="Sensori"
-        className="absolute left-6 top-6 h-10 w-auto animate-fade-in sm:left-8 sm:top-8 sm:h-12"
+        className="absolute left-6 top-6 h-16 w-auto animate-fade-in sm:left-10 sm:top-10 sm:h-20 md:h-24"
       />
 
       {/* Center content */}

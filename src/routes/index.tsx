@@ -90,7 +90,7 @@ function SensoriLanding() {
 function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-30 flex items-center justify-between px-6 py-5 backdrop-blur-md sm:px-10">
-      <img src={wordmark} alt="Sensori" className="h-9 w-auto sm:h-10" />
+      <img src={wordmark} alt="Sensori" className="h-14 w-auto sm:h-16" />
       <nav className="hidden items-center gap-10 text-xs uppercase tracking-[0.25em] text-[var(--cream-muted)] md:flex">
         <a href="#how" className="hover:text-[var(--gold-bright)] transition-colors">How it works</a>
         <a href="#features" className="hover:text-[var(--gold-bright)] transition-colors">Features</a>
