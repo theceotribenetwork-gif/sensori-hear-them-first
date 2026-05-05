@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ParticleField } from "./ParticleField";
+import wordmark from "@/assets/sensori-wordmark.png";
 
 export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
   const [leaving, setLeaving] = useState(false);
@@ -37,9 +38,11 @@ export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* Logo */}
-      <div className="absolute left-8 top-8 font-serif text-2xl tracking-wide text-[var(--cream)] animate-fade-in">
-        Sensori
-      </div>
+      <img
+        src={wordmark}
+        alt="Sensori"
+        className="absolute left-6 top-6 h-10 w-auto animate-fade-in sm:left-8 sm:top-8 sm:h-12"
+      />
 
       {/* Center content */}
       <div className="relative flex min-h-full flex-col items-center justify-center px-6 py-24 text-center">
